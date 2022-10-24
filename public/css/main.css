@@ -1,0 +1,165 @@
+* {
+    margin:0;
+    padding:0;
+    text-decoration:none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+.layout {
+    padding: 30px;
+    background-color: black;
+}
+
+.main {
+    display: flex;
+}
+
+.main .left-image {
+    background-color: red;
+    /* background-image: url('/image/dep-the-gioi.jpg'); */
+    background-repeat: no-repeat;
+    background-position: left;
+    /* height: 100vh; */
+    width: 30%;
+    background-size: cover;
+}
+
+.main .left-image img {
+    height: 100%;
+    width: 100%;
+}
+
+.main .right-image {
+    background-color: white;
+    /* height: 100vh; */
+    width: 70%;
+}
+
+.main .right-image .right-info {
+    padding: 75px;
+    background-color: aqua;
+    width: 100%;
+    height: 100%;
+}
+
+.range-donate {
+    width: 100%;
+    margin: 5% auto;
+    position: relative;
+}
+
+#slider-donate{
+ -webkit-appearance: none;
+ width: 100%;
+ height: 7px;
+ outline: none;
+ z-index: 98;
+ border-radius: 3px;
+
+}
+
+#slider-donate::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    z-index: 3;
+    position: relative;
+}
+
+#selector{
+    cursor: pointer;
+    height: 22px;
+    width: 70px;
+    position: absolute;
+    bottom: -2px;
+    left: 1%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.selectBtn{
+    height: 25px;
+    width: 100%;
+    background-image: url('/image/iconRange.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10%;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+}
+
+#selectValue {
+    width: 100%;
+    height: 23px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+
+
+}
+
+#selectValue::after{
+    content: '';
+    border-top: 17px solid #ffd200;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+
+#progressBar{
+    padding: 0px 12px 0px 12px;
+    width: 750.891px;
+    height: 7px;
+    border-radius: 3px;
+    position: absolute;
+    top: 43px;
+    left: 0;
+
+}
+
+#span-ProgressBar{
+    position: absolute;
+    width: 0%;
+    height: 10px;
+    border-radius: 3px;
+    background: #B5E61D;
+}
+
+#span-left{
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    border-radius: 3px;
+    right: 4px;
+    bottom: 20px;
+}
+
+#span-right{
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    border-radius: 3px;
+    right: -58px;
+    bottom: 20px;
+}
+
+#note {
+    font-weight: 200;
+    display: inline-block;
+    color: #1b8189;
+    font-size: 13px;
+}
+
+.required {
+    color: red;
+}
