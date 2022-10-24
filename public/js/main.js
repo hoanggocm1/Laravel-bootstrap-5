@@ -7,7 +7,7 @@ $.ajaxSetup({
 var slider = document.getElementById("slider-donate");
 var selector = document.getElementById("selector");
 var selectValue = document.getElementById("selectValue");
-var span_ProgressBar = document.getElementById("span-ProgressBar");
+var span_progressBar = document.getElementById("span-progressBar");
 var tempValue = document.getElementById("tempValue");
 
 selectValue.innerHTML = "$" + slider.value;
@@ -16,9 +16,11 @@ slider.oninput = function() {
 
     selectValue.innerHTML = "$" + this.value;
     selector.style.left = this.value / 10 + "%";
-    span_ProgressBar.style.width = this.value / 10 + "%";
+    span_progressBar.style.width = this.value / 10 + "%";
     slider.setAttribute('value', this.value);
     tempValue.setAttribute('value', this.value);
+    $('#tempValue').val(this.value);
+
 }
 
 $(function($) {
@@ -43,46 +45,55 @@ $(function($) {
 });
 
 $("#form-data").submit(function() {
-    var dataString = $("#form-data").serialize();
+    var ccExp = $('#cc-exp').val();
+    var tempCcExp = Number(ccExp.slice(-2));
+    if(tempCcExp >=1 && tempCcExp <=31 ){
 
-    $.ajax({
-        type: 'POST',
-        dataType: 'JSON',
-        url: '/save-customer-donate',
-        data: dataString,
-        success: function(result) {
-            resetInput()
-            $('.cc-number').val('');
-            $('.cc-cvc').val('');
-            $('#tempValue').val('10');
+        var dataString = $("#form-data").serialize();
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: '/save-customer-donate',
+            data: dataString,
+            success: function(result) {
+                resetInput()
+                $('.cc-number').val('');
+                $('.cc-cvc').val('');
+                $('#tempValue').val('10');
 
-            alert(result.message);
+                alert(result.message);
 
-        },
-        error: function(result) {
-            alert("Donation failed. Please try again!");
-        },
-    });
+            },
+            error: function(result) {
+                alert("Donation failed. Please try again!");
+            },
+        });
+    }
+    else{
+        alert("EXPIRATION does not match the MM / DD format.");
+        $('.cc-exp').val('');
+    }
 
 });
 
 function resetInput(){
+    var a = $('#tempValue').val('10');
     selectValue.innerHTML = "$" + 10;
     selector.style.left = 10 / 10 + "%";
-    span_ProgressBar.style.width = 10 / 10 + "%";
+    span_progressBar.style.width = 10 / 10 + "%";
     slider.setAttribute('value', 10);
-    $('#tempValue').val('10')
+    tempValue.setAttribute('value', 10);
 }
 
-function changeValue(){
+function changeValue(value){
+    oldValue = value;
     if(tempValue.value >= 10 && tempValue.value <= 1000){
         selectValue.innerHTML = "$" + tempValue.value;
         selector.style.left = tempValue.value / 10 + "%";
-        span_ProgressBar.style.width = tempValue.value / 10 + "%";
+        span_progressBar.style.width = tempValue.value / 10 + "%";
         slider.setAttribute('value', tempValue.value);
-        tempValue.setAttribute('value', tempValue.value);
     } else {
         resetInput();
-
     }
 }
+

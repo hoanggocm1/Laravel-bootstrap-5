@@ -110,7 +110,7 @@
                                     class="required">*</span></label>
                             <span id="note"> &ensp; Minimum $10</span> &ensp;
                             <input type="number" min="10" max="1000" value="10" id="tempValue"
-                                onchange="changeValue()"> $
+                                onchange="changeValue(this.value)"> $
                             <input type="range" min="10" max="1000" value="10" id="slider-donate"
                                 name="donate_us" required>
                             <div id="selector" onmousedown="return false" onselectstart="return false">
@@ -133,7 +133,7 @@
                                 <div id="selectValue"></div>
                             </div>
                             <div id="progressBar">
-                                <span id="span-ProgressBar"></span>
+                                <span id="span-progressBar"></span>
                             </div>
                         </div>
                         <div class="button d-flex justify-content-end">
